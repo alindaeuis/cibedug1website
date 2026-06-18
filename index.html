@@ -468,9 +468,16 @@
             color: #4f46e5;
             font-weight: 500;
             transition: color 0.2s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
         }
         @media (min-width: 768px) { .galeri-lihat { display: flex; } }
         .galeri-lihat:hover { color: #3730a3; }
+        .galeri-lihat i { transition: transform 0.3s; }
+        .galeri-lihat.is-open i { transform: rotate(180deg); }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -501,6 +508,12 @@
         .gallery-item-overlay.dark-label {
             background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent);
         }
+        .gallery-item-overlay.light-label {
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent);
+            color: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
         .gallery-item-overlay.zoom-icon {
             background: rgba(0,0,0,0.4);
             align-items: center;
@@ -519,6 +532,34 @@
             grid-column: span 2;
             aspect-ratio: 2/1;
         }
+
+        /* Extra gallery grid (revealed via "Lihat semua") */
+        .gallery-grid-extra {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.6s ease, margin-top 0.6s ease;
+        }
+        @media (min-width: 768px) { .gallery-grid-extra { grid-template-columns: repeat(4, 1fr); } }
+        .gallery-grid-extra.is-visible {
+            max-height: none;
+            opacity: 1;
+        }
+        .gallery-grid-extra .gallery-item {
+            aspect-ratio: 1/1;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .gallery-grid-extra.is-visible .gallery-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .gallery-lihat-mobile {
             display: flex;
             align-items: center;
@@ -532,8 +573,14 @@
             margin-top: 2rem;
             width: 100%;
             transition: color 0.2s;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
         }
         .gallery-lihat-mobile:hover { color: #3730a3; }
+        .gallery-lihat-mobile i { transition: transform 0.3s; }
+        .gallery-lihat-mobile.is-open i { transform: rotate(180deg); }
         @media (min-width: 768px) { .gallery-lihat-mobile { display: none; } }
 
         /* =============================================
@@ -557,9 +604,13 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
+            justify-content: center;
         }
-        @media (min-width: 768px) { .produk-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .produk-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 768px) { .produk-grid { grid-template-columns: repeat(2, minmax(0, 380px)); } }
+        @media (min-width: 1024px) { .produk-grid { grid-template-columns: repeat(3, minmax(0, 380px)); } }
+        .produk-grid.single-item {
+            grid-template-columns: minmax(0, 380px);
+        }
         .produk-card {
             background: white;
             border-radius: 24px;
@@ -569,6 +620,7 @@
             display: flex;
             flex-direction: column;
             transition: box-shadow 0.3s;
+            width: 100%;
         }
         .produk-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
         .produk-img-wrap {
@@ -1085,27 +1137,35 @@
                     <p class="section-label">Momen</p>
                     <h3 class="section-title">Galeri Kegiatan</h3>
                 </div>
-                <a href="#" class="galeri-lihat">Lihat semua <i class="ph ph-arrow-right"></i></a>
+                <button type="button" class="galeri-lihat" id="galeri-lihat-desktop" onclick="toggleGaleriExtra()">
+                    <span id="galeri-lihat-desktop-label">Lihat semua</span> <i class="ph ph-arrow-right"></i>
+                </button>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item gallery-large">
-                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Study Tour 2023">
-                    <div class="gallery-item-overlay dark-label"><p>Study Tour 2023</p></div>
+                    <img src="assets/dokumentasi/1.jpeg">
+                    <div class="gallery-item-overlay dark-label"><p>Kumpul Rayon</p></div>
                 </div>
                 <div class="gallery-item gallery-small">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Kegiatan Kelas">
-                    <div class="gallery-item-overlay zoom-icon"><i class="ph ph-magnifying-glass-plus"></i></div>
+                    <img src="assets/dokumentasi/2.jpeg" alt="Kegiatan Kelas">
+                    <div class="gallery-item-overlay light-label">Piket Rayon</div>
                 </div>
                 <div class="gallery-item gallery-small">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Kegiatan Kelas">
-                    <div class="gallery-item-overlay zoom-icon"><i class="ph ph-magnifying-glass-plus"></i></div>
+                    <img src="assets/dokumentasi/3.jpeg" alt="Kegiatan Kelas">
+                    <div class="gallery-item-overlay light-label">Bakti Sosial</div>
                 </div>
                 <div class="gallery-item gallery-wide">
-                    <img src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Porseni Sekolah">
-                    <div class="gallery-item-overlay dark-label"><p>Porseni Sekolah</p></div>
+                    <img src="assets/dokumentasi/4.jpeg" alt="Bagi Rapor">
+                    <div class="gallery-item-overlay dark-label"><p>Bagi Rapor</p></div>
                 </div>
             </div>
-            <a href="#" class="gallery-lihat-mobile">Lihat semua foto <i class="ph ph-arrow-right"></i></a>
+
+            <!-- Grid foto tambahan, disembunyikan sampai tombol "Lihat semua" diklik -->
+            <div class="gallery-grid-extra" id="gallery-grid-extra"></div>
+
+            <button type="button" class="gallery-lihat-mobile" id="galeri-lihat-mobile" onclick="toggleGaleriExtra()">
+                <span id="galeri-lihat-mobile-label">Lihat semua foto</span> <i class="ph ph-arrow-right"></i>
+            </button>
         </div>
     </section>
 
@@ -1117,25 +1177,25 @@
                 <h3 class="section-title">Produk UMKM Siswa</h3>
                 <p class="section-desc">Dukung kreativitas dan jiwa wirausaha siswa-siswi Cibedug 1 melalui karya dan produk unggulan mereka.</p>
             </div>
-            <div class="produk-grid">
+            <div class="produk-grid single-item">
                 <div class="produk-card">
                     <div class="produk-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tote Bag">
-                        <div class="produk-price">Rp 35.000</div>
+                        <img src="assets/product/pizza1.jpeg" alt="pizza">
+                        <div class="produk-price">20k - 35k</div>
                     </div>
                     <div class="produk-body">
-                        <div class="produk-name">Tote Bag Kanvas Lukis</div>
+                        <div class="produk-name">Pizza</div>
                         <p class="produk-desc">Tote bag kanvas estetik dengan lukisan tangan asli karya siswa. Cocok untuk hangout atau ke kampus.</p>
                         <div class="produk-footer">
                             <div class="produk-seller">
                                 <div class="seller-avatar"><img src="https://placehold.co/100x100/e2e8f0/64748b?text=CD" alt="CD"></div>
                                 <span class="seller-name">Citra Dewi</span>
                             </div>
-                            <a href="#" class="wa-btn" title="Beli via WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+                            <a href="https://wa.me/c/6285719347011" class="wa-btn" title="Beli via WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="produk-card">
+                <!-- <div class="produk-card">
                     <div class="produk-img-wrap">
                         <img src="https://images.unsplash.com/photo-1582142407894-ec85a1260a46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Snack">
                         <div class="produk-price">Rp 15.000</div>
@@ -1168,7 +1228,7 @@
                             <a href="#" class="wa-btn" title="Hubungi via WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="produk-more">
                 <a href="#" class="btn-outline">Lihat Semua Produk</a>
@@ -1248,22 +1308,90 @@
 
     <script>
         // =============================================
+        // GALLERY EXTRA PHOTOS
+        // =============================================
+        // Tambahkan foto-foto dokumentasi lain di sini. File belum perlu ada
+        // sekarang -- kalau path-nya belum ada fotonya, item itu otomatis
+        // disembunyikan (tidak akan tampil sebagai gambar rusak/broken).
+        const galleryExtraPhotos = [
+            { src: "assets/dokumentasi/5.jpeg", label: "Kumpul Rayon" },
+            { src: "assets/dokumentasi/6.jpeg", label: "Hari Batik" },
+            { src: "assets/dokumentasi/7.jpeg", label: "Berbagi" },
+            { src: "assets/dokumentasi/8.jpeg", label: "Berbagi" },
+            { src: "assets/dokumentasi/9.jpeg", label: "Berbagi" },
+            { src: "assets/dokumentasi/10.jpeg", label: "Cibedug 1" },
+            { src: "assets/dokumentasi/11.jpeg", label: "Angkatan 30" },
+            { src: "assets/dokumentasi/12.jpeg", label: "Bagi Rapor" },
+            { src: "assets/dokumentasi/13.jpeg", label: "Piket Rayon" },
+            { src: "assets/dokumentasi/14.jpeg", label: "Bersihkan Tong Sampah" },
+            { src: "assets/dokumentasi/15.jpeg", label: "Sarapan Bersama" },
+            { src: "assets/dokumentasi/16.jpeg", label: "Cibedug 1" },
+            { src: "assets/dokumentasi/17.jpeg", label: "Angkatan 30" },
+        ];
+
+        let galeriExtraOpen = false;
+        let galeriExtraBuilt = false;
+
+        function renderExtraGalleryItem(photo) {
+            const labelHtml = photo.label
+                ? `<div class="gallery-item-overlay dark-label"><p>${photo.label}</p></div>`
+                : `<div class="gallery-item-overlay zoom-icon"><i class="ph ph-magnifying-glass-plus"></i></div>`;
+            return `
+            <div class="gallery-item" data-extra-item>
+                <img src="${photo.src}" alt="${photo.label || 'Dokumentasi'}" loading="lazy"
+                     onerror="this.closest('[data-extra-item]').remove()">
+                ${labelHtml}
+            </div>`;
+        }
+
+        function buildGaleriExtra() {
+            const extraEl = document.getElementById('gallery-grid-extra');
+            extraEl.innerHTML = galleryExtraPhotos.map(renderExtraGalleryItem).join('');
+            galeriExtraBuilt = true;
+        }
+
+        function toggleGaleriExtra() {
+            if (!galeriExtraBuilt) buildGaleriExtra();
+
+            galeriExtraOpen = !galeriExtraOpen;
+            const extraEl = document.getElementById('gallery-grid-extra');
+            const desktopBtn = document.getElementById('galeri-lihat-desktop');
+            const desktopLabel = document.getElementById('galeri-lihat-desktop-label');
+            const mobileBtn = document.getElementById('galeri-lihat-mobile');
+            const mobileLabel = document.getElementById('galeri-lihat-mobile-label');
+
+            if (galeriExtraOpen) {
+                extraEl.classList.add('is-visible');
+                desktopBtn.classList.add('is-open');
+                mobileBtn.classList.add('is-open');
+                desktopLabel.textContent = 'Tutup';
+                mobileLabel.textContent = 'Tutup foto';
+            } else {
+                extraEl.classList.remove('is-visible');
+                desktopBtn.classList.remove('is-open');
+                mobileBtn.classList.remove('is-open');
+                desktopLabel.textContent = 'Lihat semua';
+                mobileLabel.textContent = 'Lihat semua foto';
+            }
+        }
+
+        // =============================================
         // STUDENT DATA
         // =============================================
         const students = [
-            { no: 1,  nis: "12309510", nama: "Alinda Euis Soleha",               rombel: "PPLG XII-4", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1Cad8SkZEa2lv3kVALCj97fKLyCozmP8_" },
-            { no: 2,  nis: "12309532", nama: "Annasya Siti Anjany",              rombel: "PPLG XII-3", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1IlCETlSF293BeGtatlfY8gwCjW5JAVZl" },
-            { no: 3,  nis: "12309630", nama: "Fahmi Haerul Anwar",               rombel: "TJKT XII-1", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1KhVmkVec7gnAg2XJ-sG52GwJL7LNqybc" },
-            { no: 4,  nis: "12309680", nama: "Indri Auliani",                    rombel: "KLN XII-2",  tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1yzOm5HkTUbs7LjijHynQk8zX2jVwtmz7" },
-            { no: 5,  nis: "12309735", nama: "Maulana Yusuf Muhammad Zehar",     rombel: "DKV XII-2",  tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1eybmLl8273979yMWV2bTpmvAQI3vGdf1" },
-            { no: 6,  nis: "12309770", nama: "Muhamad Azmi Naziyulloh",          rombel: "PPLG XII-4", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1vS5-QTdUdzJX62lJbIw4Ozxky8ShuO4W" },
-            { no: 7,  nis: "12309866", nama: "Muhammad Hanif Assidiq",           rombel: "TJKT XII-2", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1DM3OeDMXNPotUxlIapa5NFy9dWayknF1" },
-            { no: 8,  nis: "12309872", nama: "Muhammad Ikbal Saputra",           rombel: "HTL XII-2",  tingkat: 3, gdrive: "https://drive.google.com/drive/folders/17QrIo4UXQpx0JJ768XnbDzLtiqH1L3L6" },
-            { no: 9,  nis: "12309981", nama: "Raisya Kamila Azzura",             rombel: "MPLB XII-1", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1eeSO0jY4pkUPFaomxYDIfk6pejXctNeF" },
-            { no: 10, nis: "12310001", nama: "Restu Lintang Asih",               rombel: "PPLG XII-2", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1D9IyMxlKSqxQlqOoICbAISroyj-IiGPr" },
-            { no: 11, nis: "12310053", nama: "Sintia Galih",                     rombel: "MPLB XII-1", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/1GDON7WtRULZSPcqf09C1fCTF1HfxFvrE" },
-            { no: 12, nis: "12310081", nama: "Syahputra Winata",                 rombel: "PPLG XII-4", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/17Y3CT1UqdyjUqMJPrzHPJNhEOM5NoyXe" },
-            { no: 13, nis: "12310088", nama: "Tega Sereal",                      rombel: "TJKT XII-1", tingkat: 3, gdrive: "https://drive.google.com/drive/folders/10yIwVSA6_UurTVnS9nUJsCpU8jddQaUG" },
+            { no: 1,  nis: "12309510", nama: "Alinda Euis Soleha",               rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/alinda.jpeg", gdrive: "https://drive.google.com/drive/folders/1Cad8SkZEa2lv3kVALCj97fKLyCozmP8_" },
+            { no: 2,  nis: "12309532", nama: "Annasya Siti Anjany",              rombel: "PPLG XII-3", tingkat: 3, foto: "assets/XII/annasya.jpeg", gdrive: "https://drive.google.com/drive/folders/1IlCETlSF293BeGtatlfY8gwCjW5JAVZl" },
+            { no: 3,  nis: "12309630", nama: "Fahmi Haerul Anwar",               rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/fahmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1KhVmkVec7gnAg2XJ-sG52GwJL7LNqybc" },
+            { no: 4,  nis: "12309680", nama: "Indri Auliani",                    rombel: "KLN XII-2",  tingkat: 3, foto: "assets/XII/indri.jpeg", gdrive: "https://drive.google.com/drive/folders/1yzOm5HkTUbs7LjijHynQk8zX2jVwtmz7" },
+            { no: 5,  nis: "12309735", nama: "Maulana Yusuf Muhammad Zehar",     rombel: "DKV XII-2",  tingkat: 3, foto: "assets/XII/yusuf.jpeg", gdrive: "https://drive.google.com/drive/folders/1eybmLl8273979yMWV2bTpmvAQI3vGdf1" },
+            { no: 6,  nis: "12309770", nama: "Muhamad Azmi Naziyulloh",          rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/azmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1vS5-QTdUdzJX62lJbIw4Ozxky8ShuO4W" },
+            { no: 7,  nis: "12309866", nama: "Muhammad Hanif Assidiq",           rombel: "TJKT XII-2", tingkat: 3, foto: "assets/XII/hanif.jpeg", gdrive: "https://drive.google.com/drive/folders/1DM3OeDMXNPotUxlIapa5NFy9dWayknF1" },
+            { no: 8,  nis: "12309872", nama: "Muhammad Ikbal Saputra",           rombel: "HTL XII-2",  tingkat: 3, foto: "assets/XII/ikbal.jpeg", gdrive: "https://drive.google.com/drive/folders/17QrIo4UXQpx0JJ768XnbDzLtiqH1L3L6" },
+            { no: 9,  nis: "12309981", nama: "Raisya Kamila Azzura",             rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/raisya.jpeg", gdrive: "https://drive.google.com/drive/folders/1eeSO0jY4pkUPFaomxYDIfk6pejXctNeF" },
+            { no: 10, nis: "12310001", nama: "Restu Lintang Asih",               rombel: "PPLG XII-2", tingkat: 3, foto: "assets/XII/restu.jpeg", gdrive: "https://drive.google.com/drive/folders/1D9IyMxlKSqxQlqOoICbAISroyj-IiGPr" },
+            { no: 11, nis: "12310053", nama: "Sintia Galih",                     rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/sintia.jpeg", gdrive: "https://drive.google.com/drive/folders/1GDON7WtRULZSPcqf09C1fCTF1HfxFvrE" },
+            { no: 12, nis: "12310081", nama: "Syahputra Winata",                 rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/syahpurta.jpeg", gdrive: "https://drive.google.com/drive/folders/17Y3CT1UqdyjUqMJPrzHPJNhEOM5NoyXe" },
+            { no: 13, nis: "12310088", nama: "Tega Sereal",                      rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/tega.jpeg", gdrive: "https://drive.google.com/drive/folders/10yIwVSA6_UurTVnS9nUJsCpU8jddQaUG" },
             { no: 14, nis: "12410192", nama: "Annisa Julianti",                  rombel: "MPLB XI-2",  tingkat: 2, gdrive: "" },
             { no: 15, nis: "12410203", nama: "Asri Aulia Erwin",                 rombel: "KLN XI-1",   tingkat: 2, gdrive: "" },
             { no: 16, nis: "12410219", nama: "Azzam Shalahuddin Wafi",           rombel: "PPLG XI-5",  tingkat: 2, gdrive: "" },
@@ -1326,14 +1454,21 @@
             const hasLink = student.gdrive && student.gdrive.trim() !== '';
             const rombelDisplay = student.rombel || 'Kelas ' + student.tingkat;
 
+            // Foto asli (jika ada path-nya di data). Jika file belum ada / gagal
+            // dimuat, otomatis jatuh ke placeholder inisial supaya tidak tampil
+            // gambar rusak (broken image).
+            const fallbackUrl = `https://placehold.co/200x200/${bg}/${fg}?text=${initials}`;
+            const photoUrl = (student.foto && student.foto.trim() !== '') ? student.foto : fallbackUrl;
+
             return `
             <div class="student-card">
                 <div class="student-avatar-wrap">
                     <div class="avatar-ring">
                         <img 
-                            src="https://placehold.co/200x200/${bg}/${fg}?text=${initials}" 
+                            src="${photoUrl}" 
                             alt="${student.nama}"
-                            onerror="this.src='https://placehold.co/200x200/e2e8f0/64748b?text=${initials}'"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='${fallbackUrl}'"
                         >
                     </div>
                 </div>
