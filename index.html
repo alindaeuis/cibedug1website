@@ -871,7 +871,6 @@
             margin-bottom: 1.5rem;
         }
         .student-drive-btn {
-            margin-top: auto;
             width: 100%;
             display: flex;
             align-items: center;
@@ -892,6 +891,33 @@
             cursor: default;
         }
         .student-drive-btn.no-link:hover { background: #f1f5f9; color: #94a3b8; }
+
+        .student-actions {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .student-linkedin-btn {
+            flex-shrink: 0;
+            width: 2.75rem;
+            height: 2.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            color: #4f46e5;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            transition: background 0.3s, color 0.3s;
+        }
+        .student-linkedin-btn:hover { background: #0a66c2; color: white; }
+        .student-linkedin-btn.no-link {
+            background: #f1f5f9;
+            color: #94a3b8;
+            cursor: default;
+        }
+        .student-linkedin-btn.no-link:hover { background: #f1f5f9; color: #94a3b8; }
 
         /* Carousel controls */
         .carousel-controls {
@@ -1379,56 +1405,56 @@
         // STUDENT DATA
         // =============================================
         const students = [
-            { no: 1,  nis: "12309510", nama: "Alinda Euis Soleha",               rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/alinda.jpeg", gdrive: "https://drive.google.com/drive/folders/1Cad8SkZEa2lv3kVALCj97fKLyCozmP8_" },
-            { no: 2,  nis: "12309532", nama: "Annasya Siti Anjany",              rombel: "PPLG XII-3", tingkat: 3, foto: "assets/XII/annasya.jpeg", gdrive: "https://drive.google.com/drive/folders/1IlCETlSF293BeGtatlfY8gwCjW5JAVZl" },
-            { no: 3,  nis: "12309630", nama: "Fahmi Haerul Anwar",               rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/fahmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1KhVmkVec7gnAg2XJ-sG52GwJL7LNqybc" },
-            { no: 4,  nis: "12309680", nama: "Indri Auliani",                    rombel: "KLN XII-2",  tingkat: 3, foto: "assets/XII/indri.jpeg", gdrive: "https://drive.google.com/drive/folders/1yzOm5HkTUbs7LjijHynQk8zX2jVwtmz7" },
-            { no: 5,  nis: "12309735", nama: "Maulana Yusuf Muhammad Zehar",     rombel: "DKV XII-2",  tingkat: 3, foto: "assets/XII/yusuf.jpeg", gdrive: "https://drive.google.com/drive/folders/1eybmLl8273979yMWV2bTpmvAQI3vGdf1" },
-            { no: 6,  nis: "12309770", nama: "Muhamad Azmi Naziyulloh",          rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/azmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1vS5-QTdUdzJX62lJbIw4Ozxky8ShuO4W" },
-            { no: 7,  nis: "12309866", nama: "Muhammad Hanif Assidiq",           rombel: "TJKT XII-2", tingkat: 3, foto: "assets/XII/hanif.jpeg", gdrive: "https://drive.google.com/drive/folders/1DM3OeDMXNPotUxlIapa5NFy9dWayknF1" },
-            { no: 8,  nis: "12309872", nama: "Muhammad Ikbal Saputra",           rombel: "HTL XII-2",  tingkat: 3, foto: "assets/XII/ikbal.jpeg", gdrive: "https://drive.google.com/drive/folders/17QrIo4UXQpx0JJ768XnbDzLtiqH1L3L6" },
-            { no: 9,  nis: "12309981", nama: "Raisya Kamila Azzura",             rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/raisya.jpeg", gdrive: "https://drive.google.com/drive/folders/1eeSO0jY4pkUPFaomxYDIfk6pejXctNeF" },
-            { no: 10, nis: "12310001", nama: "Restu Lintang Asih",               rombel: "PPLG XII-2", tingkat: 3, foto: "assets/XII/restu.jpeg", gdrive: "https://drive.google.com/drive/folders/1D9IyMxlKSqxQlqOoICbAISroyj-IiGPr" },
-            { no: 11, nis: "12310053", nama: "Sintia Galih",                     rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/sintia.jpeg", gdrive: "https://drive.google.com/drive/folders/1GDON7WtRULZSPcqf09C1fCTF1HfxFvrE" },
-            { no: 12, nis: "12310081", nama: "Syahputra Winata",                 rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/syahpurta.jpeg", gdrive: "https://drive.google.com/drive/folders/17Y3CT1UqdyjUqMJPrzHPJNhEOM5NoyXe" },
-            { no: 13, nis: "12310088", nama: "Tega Sereal",                      rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/tega.jpeg", gdrive: "https://drive.google.com/drive/folders/10yIwVSA6_UurTVnS9nUJsCpU8jddQaUG" },
-            { no: 14, nis: "12410192", nama: "Annisa Julianti",                  rombel: "MPLB XI-2",  tingkat: 2, gdrive: "" },
-            { no: 15, nis: "12410203", nama: "Asri Aulia Erwin",                 rombel: "KLN XI-1",   tingkat: 2, gdrive: "" },
-            { no: 16, nis: "12410219", nama: "Azzam Shalahuddin Wafi",           rombel: "PPLG XI-5",  tingkat: 2, gdrive: "" },
-            { no: 17, nis: "12410225", nama: "Berlian Nurul Hikhmah",            rombel: "MPLB XI-1",  tingkat: 2, gdrive: "" },
-            { no: 18, nis: "12410252", nama: "Denisyan Rudiansyah",              rombel: "KLN XI-2",   tingkat: 2, gdrive: "" },
-            { no: 19, nis: "12410331", nama: "Indira Nurzaini",                  rombel: "PMN XI-1",   tingkat: 2, gdrive: "" },
-            { no: 20, nis: "12410347", nama: "Kaila Putri Padillah",             rombel: "KLN XI-2",   tingkat: 2, gdrive: "" },
-            { no: 21, nis: "12410401", nama: "Moch Alif Ibrahim",                rombel: "PPLG XI-3",  tingkat: 2, gdrive: "" },
-            { no: 22, nis: "12410427", nama: "Muhamad Fachri",                   rombel: "HTL XI-1",   tingkat: 2, gdrive: "" },
-            { no: 23, nis: "12410479", nama: "Muhamad Yasir",                    rombel: "HTL XI-1",   tingkat: 2, gdrive: "" },
-            { no: 24, nis: "12410508", nama: "Muhammad Dzakir Jaelani",          rombel: "PPLG XI-3",  tingkat: 2, gdrive: "" },
-            { no: 25, nis: "12410514", nama: "Muhammad Faisal Hadi",             rombel: "PPLG XI-3",  tingkat: 2, gdrive: "" },
-            { no: 26, nis: "12410551", nama: "Muhammad Rafael Agustian",         rombel: "DKV XI-2",   tingkat: 2, gdrive: "" },
-            { no: 27, nis: "12410714", nama: "Siti Namira",                      rombel: "PMN XI-1",   tingkat: 2, gdrive: "" },
-            { no: 28, nis: "12410725", nama: "Siti Zulfah Rahmawati",            rombel: "DKV XI-2",   tingkat: 2, gdrive: "" },
-            { no: 29, nis: "12410769", nama: "Zahra Elfariani Setiawan",         rombel: "MPLB XI-2",  tingkat: 2, gdrive: "" },
-            { no: 30, nis: "12410773", nama: "Zeldyne Sybillatavya Permana",     rombel: "KLN XI-1",   tingkat: 2, gdrive: "" },
-            { no: 31, nis: "12510806", nama: "Ahmad Luthfi Nizam",               rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 32, nis: "12510824", nama: "Alizya Meilantika Setya",          rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 33, nis: "12510834", nama: "Andimas Ramadana",                 rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 34, nis: "12510871", nama: "Azka Anindya Asis",                rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 35, nis: "12510885", nama: "Cahya Gilang Permana",             rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 36, nis: "12510948", nama: "Farrel Evan Aditya",               rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 37, nis: "12510963", nama: "Gibran Mahmud Al Munawar",         rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 38, nis: "12511069", nama: "Maurida Pebriani",                 rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 39, nis: "12511133", nama: "Muhamad Said Kadafi",              rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 40, nis: "12511135", nama: "Muhamad Sidqi Zaeda Arsy",         rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 41, nis: "12511172", nama: "Muhammad Fakhri Mubarok",          rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 42, nis: "12511192", nama: "Muhammad Luthfi",                  rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 43, nis: "12511207", nama: "Muhammad Rezky Arsy Ramadhan",     rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 44, nis: "12511208", nama: "Muhammad Ridho",                   rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 45, nis: "12511218", nama: "Muhammad Yurizki Akbar Nurwanto",  rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 46, nis: "12511249", nama: "Naufal Hakim Arrofi",              rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 47, nis: "12511259", nama: "Nesya Rizki Br Ginting",           rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 48, nis: "12511359", nama: "Shafa Azzahra Nurprayogo",         rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 49, nis: "12511376", nama: "Siti Robiah Al Adawiyah",          rombel: "",           tingkat: 1, gdrive: "" },
-            { no: 50, nis: "12511394", nama: "Teuku Adhilla Raffa",              rombel: "",           tingkat: 1, gdrive: "" },
+            { no: 1,  nis: "12309510", nama: "Alinda Euis Soleha",               rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/alinda.jpeg", gdrive: "https://drive.google.com/drive/folders/1Cad8SkZEa2lv3kVALCj97fKLyCozmP8_", linkedin: "https://www.linkedin.com/in/alindaeuis" },
+            { no: 2,  nis: "12309532", nama: "Annasya Siti Anjany",              rombel: "PPLG XII-3", tingkat: 3, foto: "assets/XII/annasya.jpeg", gdrive: "https://drive.google.com/drive/folders/1IlCETlSF293BeGtatlfY8gwCjW5JAVZl", linkedin: "https://www.linkedin.com/in/annasyasa" },
+            { no: 3,  nis: "12309630", nama: "Fahmi Haerul Anwar",               rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/fahmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1KhVmkVec7gnAg2XJ-sG52GwJL7LNqybc", linkedin: "https://www.linkedin.com/in/fahmi-haerul-anwar?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+            { no: 4,  nis: "12309680", nama: "Indri Auliani",                    rombel: "KLN XII-2",  tingkat: 3, foto: "assets/XII/indri.jpeg", gdrive: "https://drive.google.com/drive/folders/1yzOm5HkTUbs7LjijHynQk8zX2jVwtmz7", linkedin: "#" },
+            { no: 5,  nis: "12309735", nama: "Maulana Yusuf Muhammad Zehar",     rombel: "DKV XII-2",  tingkat: 3, foto: "assets/XII/yusuf.jpeg", gdrive: "https://drive.google.com/drive/folders/1eybmLl8273979yMWV2bTpmvAQI3vGdf1", linkedin: "https://www.linkedin.com/in/maulana-yusuf-muhammad-zehar-3aa609321?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
+            { no: 6,  nis: "12309770", nama: "Muhamad Azmi Naziyulloh",          rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/azmi.jpeg", gdrive: "https://drive.google.com/drive/folders/1vS5-QTdUdzJX62lJbIw4Ozxky8ShuO4W", linkedin: "https://id.linkedin.com/in/muhamadazminaziyulloh" },
+            { no: 7,  nis: "12309866", nama: "Muhammad Hanif Assidiq",           rombel: "TJKT XII-2", tingkat: 3, foto: "assets/XII/hanif.jpeg", gdrive: "https://drive.google.com/drive/folders/1DM3OeDMXNPotUxlIapa5NFy9dWayknF1", linkedin: "https://www.linkedin.com/in/muhammad-hanif-8104b531b?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+            { no: 8,  nis: "12309872", nama: "Muhammad Ikbal Saputra",           rombel: "HTL XII-2",  tingkat: 3, foto: "assets/XII/ikbal.jpeg", gdrive: "https://drive.google.com/drive/folders/17QrIo4UXQpx0JJ768XnbDzLtiqH1L3L6", linkedin: "https://id.linkedin.com/in/muhammad-ikbal-saputra-3a8110418" },
+            { no: 9,  nis: "12309981", nama: "Raisya Kamila Azzura",             rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/raisya.jpeg", gdrive: "https://drive.google.com/drive/folders/1eeSO0jY4pkUPFaomxYDIfk6pejXctNeF", linkedin: "https://www.linkedin.com/in/raisya-kamila-azzura-107446320/" },
+            { no: 10, nis: "12310001", nama: "Restu Lintang Asih",               rombel: "PPLG XII-2", tingkat: 3, foto: "assets/XII/restu.jpeg", gdrive: "https://drive.google.com/drive/folders/1D9IyMxlKSqxQlqOoICbAISroyj-IiGPr", linkedin: "https://www.linkedin.com/in/restulintang03" },
+            { no: 11, nis: "12310053", nama: "Sintia Galih",                     rombel: "MPLB XII-1", tingkat: 3, foto: "assets/XII/sintia.jpeg", gdrive: "https://drive.google.com/drive/folders/1GDON7WtRULZSPcqf09C1fCTF1HfxFvrE", linkedin: "https://www.linkedin.com/in/sintia-galih-886ab3409/" },
+            { no: 12, nis: "12310081", nama: "Syahputra Winata",                 rombel: "PPLG XII-4", tingkat: 3, foto: "assets/XII/syahpurta.jpeg", gdrive: "https://drive.google.com/drive/folders/17Y3CT1UqdyjUqMJPrzHPJNhEOM5NoyXe", linkedin: "https://www.linkedin.com/in/syahputra-winata?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+            { no: 13, nis: "12310088", nama: "Tega Sereal",                      rombel: "TJKT XII-1", tingkat: 3, foto: "assets/XII/tega.jpeg", gdrive: "https://drive.google.com/drive/folders/10yIwVSA6_UurTVnS9nUJsCpU8jddQaUG", linkedin: "https://www.linkedin.com/in/tega-sereal-1707a7415?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+            { no: 14, nis: "12410192", nama: "Annisa Julianti",                  rombel: "MPLB XI-2",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 15, nis: "12410203", nama: "Asri Aulia Erwin",                 rombel: "KLN XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 16, nis: "12410219", nama: "Azzam Shalahuddin Wafi",           rombel: "PPLG XI-5",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 17, nis: "12410225", nama: "Berlian Nurul Hikhmah",            rombel: "MPLB XI-1",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 18, nis: "12410252", nama: "Denisyan Rudiansyah",              rombel: "KLN XI-2",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 19, nis: "12410331", nama: "Indira Nurzaini",                  rombel: "PMN XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 20, nis: "12410347", nama: "Kaila Putri Padillah",             rombel: "KLN XI-2",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 21, nis: "12410401", nama: "Moch Alif Ibrahim",                rombel: "PPLG XI-3",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 22, nis: "12410427", nama: "Muhamad Fachri",                   rombel: "HTL XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 23, nis: "12410479", nama: "Muhamad Yasir",                    rombel: "HTL XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 24, nis: "12410508", nama: "Muhammad Dzakir Jaelani",          rombel: "PPLG XI-3",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 25, nis: "12410514", nama: "Muhammad Faisal Hadi",             rombel: "PPLG XI-3",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 26, nis: "12410551", nama: "Muhammad Rafael Agustian",         rombel: "DKV XI-2",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 27, nis: "12410714", nama: "Siti Namira",                      rombel: "PMN XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 28, nis: "12410725", nama: "Siti Zulfah Rahmawati",            rombel: "DKV XI-2",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 29, nis: "12410769", nama: "Zahra Elfariani Setiawan",         rombel: "MPLB XI-2",  tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 30, nis: "12410773", nama: "Zeldyne Sybillatavya Permana",     rombel: "KLN XI-1",   tingkat: 2, gdrive: "", linkedin: "#" },
+            { no: 31, nis: "12510806", nama: "Ahmad Luthfi Nizam",               rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 32, nis: "12510824", nama: "Alizya Meilantika Setya",          rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 33, nis: "12510834", nama: "Andimas Ramadana",                 rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 34, nis: "12510871", nama: "Azka Anindya Asis",                rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 35, nis: "12510885", nama: "Cahya Gilang Permana",             rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 36, nis: "12510948", nama: "Farrel Evan Aditya",               rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 37, nis: "12510963", nama: "Gibran Mahmud Al Munawar",         rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 38, nis: "12511069", nama: "Maurida Pebriani",                 rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 39, nis: "12511133", nama: "Muhamad Said Kadafi",              rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 40, nis: "12511135", nama: "Muhamad Sidqi Zaeda Arsy",         rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 41, nis: "12511172", nama: "Muhammad Fakhri Mubarok",          rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 42, nis: "12511192", nama: "Muhammad Luthfi",                  rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 43, nis: "12511207", nama: "Muhammad Rezky Arsy Ramadhan",     rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 44, nis: "12511208", nama: "Muhammad Ridho",                   rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 45, nis: "12511218", nama: "Muhammad Yurizki Akbar Nurwanto",  rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 46, nis: "12511249", nama: "Naufal Hakim Arrofi",              rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 47, nis: "12511259", nama: "Nesya Rizki Br Ginting",           rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 48, nis: "12511359", nama: "Shafa Azzahra Nurprayogo",         rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 49, nis: "12511376", nama: "Siti Robiah Al Adawiyah",          rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
+            { no: 50, nis: "12511394", nama: "Teuku Adhilla Raffa",              rombel: "",           tingkat: 1, gdrive: "", linkedin: "#" },
         ];
 
         // =============================================
@@ -1452,11 +1478,9 @@
             const initials = getInitials(student.nama);
             const [bg, fg] = getAvatarColor(student.nis);
             const hasLink = student.gdrive && student.gdrive.trim() !== '';
+            const hasLinkedin = student.linkedin && student.linkedin.trim() !== '' && student.linkedin.trim() !== '#';
             const rombelDisplay = student.rombel || 'Kelas ' + student.tingkat;
 
-            // Foto asli (jika ada path-nya di data). Jika file belum ada / gagal
-            // dimuat, otomatis jatuh ke placeholder inisial supaya tidak tampil
-            // gambar rusak (broken image).
             const fallbackUrl = `https://placehold.co/200x200/${bg}/${fg}?text=${initials}`;
             const photoUrl = (student.foto && student.foto.trim() !== '') ? student.foto : fallbackUrl;
 
@@ -1475,14 +1499,24 @@
                 <div class="student-name">${student.nama}</div>
                 <div class="student-nis">NIS: ${student.nis}</div>
                 <span class="student-rombel">${rombelDisplay}</span>
-                ${hasLink
-                    ? `<a href="${student.gdrive}" target="_blank" rel="noopener" class="student-drive-btn">
-                           <i class="ph ph-google-drive-logo" style="font-size:1.25rem;"></i> Buka Drive
-                       </a>`
-                    : `<span class="student-drive-btn no-link">
-                           <i class="ph ph-google-drive-logo" style="font-size:1.25rem;"></i> Drive belum tersedia
-                       </span>`
-                }
+                <div class="student-actions">
+                    ${hasLink
+                        ? `<a href="${student.gdrive}" target="_blank" rel="noopener" class="student-drive-btn">
+                               <i class="ph ph-google-drive-logo" style="font-size:1.25rem;"></i> Buka Drive
+                           </a>`
+                        : `<span class="student-drive-btn no-link">
+                               <i class="ph ph-google-drive-logo" style="font-size:1.25rem;"></i> Drive belum tersedia
+                           </span>`
+                    }
+                    ${hasLinkedin
+                        ? `<a href="${student.linkedin}" target="_blank" rel="noopener" class="student-linkedin-btn" title="LinkedIn">
+                               <i class="ph ph-linkedin-logo"></i>
+                           </a>`
+                        : `<span class="student-linkedin-btn no-link" title="LinkedIn belum tersedia">
+                               <i class="ph ph-linkedin-logo"></i>
+                           </span>`
+                    }
+                </div>
             </div>`;
         }
 
